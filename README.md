@@ -186,13 +186,11 @@ Please keep `--no-verify` for emergencies only - CI runs the same checks.
    WSL (recommended) or Git Bash with Node/npm and any requested tools on PATH.
 
 3. **Set up environment variables**:
-   
-   **Backend** (`apps/backend/.env`):
-   ```bash
-   # Created by scripts/setup.sh if it did not already exist.
-   ```
-   
-   Edit `apps/backend/.env` with your configuration:
+
+   The bootstrap creates `apps/backend/.env`, `apps/frontend/.env`, and
+   `apps/mobile/.env` from their examples only when those files do not already
+   exist. Edit the backend file with your local configuration and replace the
+   example secrets before starting the backend:
    ```env
    # Database Configuration
    DATABASE_PATH=./data/vaultix.db  # SQLite path (or use DATABASE_URL for PostgreSQL)
@@ -222,12 +220,8 @@ Please keep `--no-verify` for emergencies only - CI runs the same checks.
    EMAIL_FROM=no-reply@vaultix.io
    ```
    
-   **Frontend** (`apps/frontend/.env.local`):
-   ```bash
-   cp apps/frontend/.env.example apps/frontend/.env.local
-   ```
-   
-   Create `apps/frontend/.env.local`:
+   Review `apps/frontend/.env` and set the backend URL if it differs from the
+   local default:
    ```env
    NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
    NEXT_PUBLIC_STELLAR_NETWORK=testnet
