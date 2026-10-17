@@ -241,18 +241,17 @@ The backend and the frontend are separate apps and are started in separate
 terminals:
 
 ```bash
-# Terminal 1 - Backend
-cd apps/backend
-npm run start:dev
-
-# Terminal 2 - Frontend
-cd apps/frontend
-npm run dev
+make dev
 
 # Terminal 3 - Watch onchain contracts (optional)
 cd apps/onchain
 cargo build --target wasm32v1-none --release
 ```
+
+Run `make help` for the available development, test, lint, build, database, and
+contract-test targets. See [CONTRIBUTING.md](CONTRIBUTING.md#make-targets) for
+prerequisites and details; `make db-reset` deletes the local PostgreSQL data
+volume.
 
 ### Testing Your Setup
 
