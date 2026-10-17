@@ -105,7 +105,8 @@ Before you begin, ensure you have the following installed:
 - **Stellar Wallet** - Freighter or Lobster wallet browser extension ([Install Freighter](https://freighter.app))
 
 **Optional:**
-- **Docker** - For containerized PostgreSQL
+- **Docker with Compose** - For `./scripts/setup.sh --with-db`
+- **Rust/Cargo** - For on-chain contract development and tests
 - **VS Code** with Rust Analyzer, ESLint, Prettier extensions
 
 Check your local tool versions, required development environment variables, and
@@ -166,24 +167,29 @@ Please keep `--no-verify` for emergencies only - CI runs the same checks.
    cd vaultix
    ```
 
-2. **Install dependencies**. From the repository root (this also installs the
-   root tooling and the husky git hooks):
+2. **Bootstrap the monorepo**. From the repository root, this copies available
+   env templates without overwriting existing files and installs dependencies
+   for the root and all three apps:
    ```bash
-   npm install
+   ./scripts/setup.sh
    ```
 
-   Each app is an independent package with its own dependencies:
+   To also start local PostgreSQL and run backend migrations:
    ```bash
-   npm --prefix apps/backend install
-   npm --prefix apps/frontend install
-   npm --prefix apps/mobile install   # optional (React Native app)
+   ./scripts/setup.sh --with-db
    ```
+
+   `--with-db` requires Docker Compose and uses the local credentials in
+   `apps/backend/docker-compose.yml`. It does not change an existing backend
+   `.env`; set `DATABASE_URL` there if the running backend should use PostgreSQL
+   instead of its default SQLite configuration. On Windows, run the script in
+   WSL (recommended) or Git Bash with Node/npm and any requested tools on PATH.
 
 3. **Set up environment variables**:
    
    **Backend** (`apps/backend/.env`):
    ```bash
-   cp apps/backend/.env.example apps/backend/.env
+   # Created by scripts/setup.sh if it did not already exist.
    ```
    
    Edit `apps/backend/.env` with your configuration:
