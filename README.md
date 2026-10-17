@@ -107,6 +107,11 @@ Before you begin, ensure you have the following installed:
 - **Docker** - For containerized PostgreSQL
 - **VS Code** with Rust Analyzer, ESLint, Prettier extensions
 
+Check your local tool versions, required development environment variables, and
+default service ports with `./scripts/doctor.sh`. See the
+[environment diagnostics guide](docs/ENVIRONMENT.md#environment-diagnostics)
+for details and JSON output for CI.
+
 ### Package manager
 
 Vaultix uses **npm** as its single package manager (Node.js 20+ bundles a
