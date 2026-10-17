@@ -95,6 +95,7 @@ Get QuickEx running locally in minutes. This setup covers all three apps: fronte
 
 Before you begin, ensure you have the following installed:
 
+- **GNU Make** - For the root development and verification targets
 - **Node.js** 20+ ([Download](https://nodejs.org)) - JavaScript runtime
 - **npm** 10+ (bundled with Node.js 20+) - Package manager (see [Package manager](#package-manager))
 - **PostgreSQL** 14+ ([Download](https://www.postgresql.org)) OR **SQLite** (for simpler setup)
@@ -237,8 +238,8 @@ Please keep `--no-verify` for emergencies only - CI runs the same checks.
 
 **Run the services (Recommended)**
 
-The backend and the frontend are separate apps and are started in separate
-terminals:
+Start the backend and frontend development servers together from the repository
+root:
 
 ```bash
 make dev
